@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocialloginService } from '../../../services/sociallogin.service';
 
 @Component({
   selector: 'app-videos',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private social: SocialloginService) { }
 
   ngOnInit(): void {
+    console.log(this.social.isloggedin, this.social.getUser());
   }
 
 }

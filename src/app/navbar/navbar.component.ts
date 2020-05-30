@@ -29,6 +29,8 @@ isloggedin: boolean;
 
   logout(): void {
     this.auth.signOut();
+    this.social.user = null;
+    this.social.isloggedin = false;
     this.router.navigate(['/login']);
   }
 

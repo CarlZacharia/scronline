@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { VideosComponent } from './access/dashboard/videos/videos.component';
 import { UploadsComponent } from './access/dashboard/uploads/uploads.component';
 import { QuestionsComponent } from './access/dashboard/questions/questions.component';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -49,7 +50,8 @@ export function provideConfig() {
   providers: [
     { provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
+    AuthGuard
     ],
   bootstrap: [AppComponent]
 })

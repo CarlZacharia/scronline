@@ -32,7 +32,7 @@ export class SocialloginService {
   }
 
   loginService(cl){
-    return this.http.post("https://goodltc.com/php/login.php", cl);
+    return this.http.post("https://goodltc.com/php/loginscr.php", cl);
   }
 
 }

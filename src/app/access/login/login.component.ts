@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
 
   signInWithGoogle(): void {
     this.auth.signIn(GoogleLoginProvider.PROVIDER_ID).then((user) => {
-      this.social.loginService(user).subscribe((u) => {
+      this.social.loginService(user).subscribe((u: SocialUser) => {
+        this.social.isloggedin = true;
+        this.social.user = u;
         return this.router.navigate(['/dashboard']);
       })
     })
