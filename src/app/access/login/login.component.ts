@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { JwtService } from '../../services/jwt.service';
+import { Router } from '@angular/router';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { AuthService } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
+import { SocialloginService } from '../../services/sociallogin.service';
 
 @Component({
   selector: 'app-login',
@@ -8,26 +11,29 @@ import { JwtService } from '../../services/jwt.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  
+  user: SocialUser;
 
-  constructor(private jwt: JwtService) { }
+  constructor(private auth: AuthService, private social: SocialloginService, private router: Router) { }
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, [Validators.required, Validators.minLength(8)]),
-    });
+
   }
 
-  onSubmit(){
-    this.jwt.login(
-     this.loginForm.value.email,
-     this.loginForm.value.password).subscribe(
-       (data) => localStorage.setItem('access_token', JSON.stringify(data)),
-        (err) => console.log(err)
-     );
-//     localStorage.setItem('access_token', data.authToken)
-}
-  
+  signInWithGoogle(): void {
+    this.auth.signIn(GoogleLoginProvider.PROVIDER_ID).then((user) => {
+      this.social.loginService(user).subscribe((u) => {
+        return this.router.navigate(['/dashboard']);
+      })
+    })
+  }
+
+  signInWithFB(): void {
+    this.auth.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.auth.signOut();
+  }
 
 }

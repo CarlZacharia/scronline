@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { JwtService } from '../../services/jwt.service';
+import { AuthService } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,14 +9,14 @@ import { JwtService } from '../../services/jwt.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  user: SocialUser;
 
-  constructor(private jwt: JwtService) { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
-    this.jwt.logincheck().subscribe(
-       (data) => console.log(data),
-       (err) => console.log(err)
-     );
+    this.auth.authState.subscribe((user) => {
+      this.user = user;
+    });
   }
 
 }

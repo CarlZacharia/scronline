@@ -1,30 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-  <a class="navbar-brand" routerLink="home" routerLinkActive="active">M Tutorial</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
- 
-  <div class="collapse navbar-collapse" id="navbarsExample09">
-    <ul class="navbar-nav mr-auto">
- 
-        <li class="nav-item">
-            <a class="nav-link"  routerLink="login" routerLinkActive="active">Login</a>
-          </li>
+<app-navbar></app-navbar>
 
-          <li class="nav-item">
-            <a class="nav-link"  routerLink="registration" routerLinkActive="active">Registration</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"  routerLink="dashboard" routerLinkActive="active">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="btn btn-danger btn-block" (click)="logout()">Logout</button>
-          </li> 
- 
-    </ul>
- 
-  </div>
-</nav>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<!-- Intro Section -->
+<router-outlet></router-outlet>
